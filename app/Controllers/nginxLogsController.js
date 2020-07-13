@@ -8,7 +8,7 @@ let getnginxLogs=(req,res)=>{
     + '"$request" $status $body_bytes_sent "$http_referer" "$http_user_agent"');
 
     let data=[];
-    let path='app/access.log'; 
+    let path='/var/log/nginx/access.log'; 
           
     parser.read(path, function (row) {
     //console.log(row);
@@ -29,7 +29,7 @@ let filterLogs=(req,res)=>{
     + '"$request" $status $body_bytes_sent "$http_referer" "$http_user_agent"');
 
     let data=[];
-    let path='app/access.log'; 
+    let path='/var/log/nginx/access.log'; 
           
     parser.read(path, function (row) {
     data.push(row);
