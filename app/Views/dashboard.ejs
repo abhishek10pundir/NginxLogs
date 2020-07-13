@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>DashBoard</head>
+    <body>
+        <form method="POST" action="/filterlogs">
+            <select name="filterBy" required>
+                 
+                    <option value="">Filter Logs</option>
+                    <% filterOptions.forEach(function(row){ %>
+                    <option value="<%= row %>"><%= row %></option>
+                    <% }) %>
+                 
+            </select>
+            <input type="text"name="value" placeholder="value"  required>
+            <input type="submit"value="Filter">
+        </form>
+        <form method="GET" action="/logs">
+        <input type="submit"value="GetAllLogs">
+        </form>
+        <table class="table table-inverse">
+            <thead>
+              <tr>
+                <th>Remote_addr</th>
+                <th>Remote_user</th>
+                <th>Time</th>
+                <th>Request</th>
+                <th>Status</th>
+                <th>Body_bytes_sent</th>
+                <th>Http_referer</th>
+                <th>Http_user_agent</th>
+              </tr>
+            </thead>
+          
+            <tbody>
+              <% for(let i=0; i < data.length; i++) { %>
+              <tr>
+                <td><%= data[i].remote_addr ?data[i].remote_addr:"N/A"  %></td>
+                <td><%= data[i].remote_user? data[i].remote_user:"N/A" %></td>
+                <td><%= data[i].time_local? data[i].time_local:"N/A"%></td>
+                <td><%= data[i].request ?data[i].request:"N/A"  %></td>
+                <td><%= data[i].status ? data[i].status:"N/A" %></td>
+                <td><%= data[i].body_bytes_sent ?data[i].body_bytes_sent :"N/A"%></td>
+                <td><%= data[i].http_referer?data[i].http_referer :"N/A"%></td>
+                <td><%= data[i].http_user_agent ? data[i].http_user_agent:"N/A"%></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+    </body>
+</html>
